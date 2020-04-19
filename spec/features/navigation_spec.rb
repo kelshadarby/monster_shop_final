@@ -182,6 +182,16 @@ RSpec.describe 'Site Navigation' do
         expect(current_path).to eq(root_path)
       end
 
+      it 'bulk discounts page' do
+        visit root_path
+
+        within 'nav' do
+          click_link 'Bulk Discounts'
+        end
+
+        expect(current_path).to eq(merchant_discounts_path)
+      end
+
       it 'all items' do
         visit root_path
 
