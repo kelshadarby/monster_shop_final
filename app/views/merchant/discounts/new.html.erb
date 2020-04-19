@@ -1,0 +1,10 @@
+<h2>New Bulk Discount</h2>
+<%= form_tag merchant_discounts_path do %>
+  <%= label_tag :percent_off, "Percent Discount" %>
+  <%= text_field_tag :percent_off %>
+
+  <%= label_tag :min_quantity, "Minimum Quantity Required" %>
+  <%= text_field_tag :min_quantity %>
+
+  <%= submit_tag 'Create Bulk Discount' %>
+<% end %>
