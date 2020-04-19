@@ -17,13 +17,11 @@ RSpec.describe "As a merchant employee", type: :feature do
     visit merchant_discounts_path
 
     within "#discount-#{@discount_1.id}" do
-      expect(page).to have_content(@discount_1.percent_off)
-      expect(page).to have_content(@discount_1.min_quantity)
+      expect(page).to have_content("#{@discount_1.percent_off}% off on #{@discount_1.min_quantity} or more of any individual item")
     end
 
     within "#discount-#{@discount_2.id}" do
-      expect(page).to have_content(@discount_2.percent_off)
-      expect(page).to have_content(@discount_2.min_quantity)
+      expect(page).to have_content("#{@discount_2.percent_off}% off on #{@discount_2.min_quantity} or more of any individual item")
     end
 
     expect(page).to_not have_content(@discount_3.percent_off)
