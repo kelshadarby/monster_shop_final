@@ -12,7 +12,11 @@ RSpec.describe "As a merchant employee", type: :feature do
   end
 
   it "I can view a discount's show page" do
-    visit merchant_discount_path(@discount_1)
+    visit merchant_discounts_path
+
+    click_link "#{@discount_1.percent_off}% off on #{@discount_1.min_quantity} or more of any individual item"
+
+    expect(current_path).to eq(merchant_discount_path(@discount_1))
 
     expect(page).to have_content("#{@discount_1.percent_off}% off")
     expect(page).to have_content("#{@discount_1.min_quantity} minimum of any individual item")
