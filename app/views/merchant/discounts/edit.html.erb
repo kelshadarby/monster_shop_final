@@ -1,0 +1,10 @@
+<h2>Edit Your Bulk Discount</h2>
+<%= form_tag merchant_discount_path(@discount), method: :patch do %>
+  <%= label_tag :percent_off, "Percent Discount" %>
+  <%= text_field_tag :percent_off, @discount.percent_off.to_i %>
+
+  <%= label_tag :min_quantity, "Minimum Quantity Required" %>
+  <%= text_field_tag :min_quantity, @discount.min_quantity.to_i %>
+
+  <%= submit_tag 'Update Bulk Discount' %>
+<% end %>
