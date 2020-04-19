@@ -1,0 +1,5 @@
+<%@discounts.each do |discount|%>
+<p id="discount-<%=discount.id%>">
+  <%=discount.percent_off%>% off of <%=discount.min_quantity%> of any individual item
+</p>
+<%end%>
