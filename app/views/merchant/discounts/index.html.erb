@@ -2,6 +2,6 @@
 
 <%@discounts.each do |discount|%>
 <p id="discount-<%=discount.id%>">
-  <%=discount.percent_off%>% off on <%=discount.min_quantity%> or more of any individual item
+  <%=link_to "#{discount.percent_off}% off on #{discount.min_quantity} or more of any individual item", merchant_discount_path(discount) %>
 </p>
 <%end%>
