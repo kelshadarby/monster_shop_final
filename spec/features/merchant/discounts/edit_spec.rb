@@ -6,7 +6,6 @@ RSpec.describe "As a merchant employee", type: :feature do
     @merchant_1 = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
     @m_user = @merchant_1.users.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan@example.com', password: 'securepassword')
     @discount = @merchant_1.discounts.create(percent_off: 5, min_quantity: 10)
-    @discount_2 = @merchant_1.discounts.create(percent_off: 15, min_quantity: 20)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@m_user)
   end
