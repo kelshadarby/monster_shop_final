@@ -22,7 +22,7 @@ RSpec.describe "As a user", type: :feature do
     visit item_path(@nessie)
     click_button "Add to Cart"
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@m_user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
 
   it "I can see the discount is added to the cart once I add enough of an item" do
@@ -131,6 +131,33 @@ RSpec.describe "As a user", type: :feature do
         expect(page).to have_content("Subtotal: $#{item.price}")
       end
     end
+
+    expect(page).to have_content("Total: $#{order_total.to_f.round(2)}")
+  end
+
+  it "I can see the discount is carried through checkout" do
+    ogre_subtotal = (@ogre.price * 11)
+    discount_percent = (1 - (@discount_1.percent_off.to_f / 100))
+    discounted_total = (ogre_subtotal * discount_percent)
+
+    order_total = (discounted_total + @giant.price + @hippo.price + @nessie.price)
+
+    visit cart_path
+
+    within "#item-#{@ogre.id}" do
+      10.times do
+        click_on "More of This!"
+      end
+    end
+
+    within "#item-#{@ogre.id}" do
+      expect(page).to_not have_content("Subtotal: $#{ogre_subtotal}")
+      expect(page).to have_content("Subtotal: $#{discounted_total}")
+    end
+
+    expect(page).to have_content("Total: $#{order_total.to_f.round(2)}")
+
+    click_on "Check Out"
 
     expect(page).to have_content("Total: $#{order_total.to_f.round(2)}")
   end
