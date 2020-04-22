@@ -74,7 +74,7 @@ RSpec.describe "As a user", type: :feature do
     expect(page).to have_content("Total: $#{order_total.to_f.round(2)}")
   end
 
-  it "I can see the higher dicount applies when both discount critera is met" do
+  it "I can see the higher discount applies when both discount critera is met" do
     ogre_subtotal = (@ogre.price * 31)
 
     discount_1_discount_percent = (1 - (@discount_1.percent_off.to_f / 100))
